@@ -11,7 +11,7 @@
 
 #! 2.yorum(#?) olarak yazılan diğer yöntemlerde faz değişimini gözlemleyemeyiz çünkü faz tepmesi global olur, gözlemlemek istiyorsan 1.yorumu(#?) yap
 
-from qiskit import QuantumCircuit,QuantumRegister
+from qiskit import QuantumCircuit, QuantumRegister
 from qiskit.quantum_info import Statevector
 # from qiskit_aer import AerSimulator
 
