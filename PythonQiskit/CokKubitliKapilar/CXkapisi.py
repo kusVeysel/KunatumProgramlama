@@ -1,4 +1,4 @@
-from qiskit import QuantumCircuit , QuantumRegister
+from qiskit import QuantumCircuit , QuantumRegister, ClassicalRegister
 from qiskit.quantum_info import Statevector
 
 q = QuantumRegister(2)
