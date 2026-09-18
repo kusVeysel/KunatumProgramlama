@@ -22,9 +22,9 @@ devre.h(0)
 devre.measure(0, 0)
 
 #? Simülasyon
-simulator = AerSimulator()  #* Aer simülatör nesnesini oluşturur
-job = simulator.run(devre, shots=1000)  #* Devreyi çalıştırır (shots: deneyin kaç kez tekrarlanacağı)
-counts = job.result().get_counts()  #* Ölçüm sonuçlarının frekansını (dağılımını) sözlük olarak alır
+simulator = AerSimulator()
+job = simulator.run(devre, shots=1000)  
+counts = job.result().get_counts() 
 print(counts)
 
 # Devreyi yazdır
