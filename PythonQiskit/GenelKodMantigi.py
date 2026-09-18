@@ -1,25 +1,25 @@
-from qiskit import QuantumCircuit #* qiskit'i dahil eder
-from qiskit_aer import AerSimulator #* simülatörü dahil et
+from qiskit import QuantumCircuit  #* Qiskit devre modülünü dahil eder
+from qiskit_aer import AerSimulator  #* Simülatör modülünü dahil eder
 
-#* QuantumCircuit(Kaç_Kübitli,Kübit_kaç_bit_içerecek)
-qc = QuantumCircuit(1,1)
+#? QuantumCircuit(kübit_sayısı, klasik_bit_sayısı)
+qc = QuantumCircuit(1, 1)
 
-qc.x(0) #* 0(birinci).kübite x kapısı uygula
-#* eğer QuantumCircuit(3,3)lük bi kübit oluşturulursa (ilk parametre önemli) x(0) dersek birinci kübite ,x(1) dersek ikinci kübite , x(2) dersek 3.kübite x kapısı uygular 
+qc.x(0)  #* 0. (birinci) kübite X kapısı uygula
+#! Not: Qiskit'te kübit sıralaması sağdan soladır.
+#* Örneğin 4 kübitlik bir devrede durum gösterimi → |0000⟩ (Qiskit sıralaması: |q3 q2 q1 q0⟩)
+# QuantumCircuit(3,3) oluşturulursa; qc.x(0) birinci, qc.x(1) ikinci, qc.x(2) üçüncü kübite X kapısı uygular.
 
-#* Ölçüm
-qc.measure(0,0) #* kuantumla arada köprü görevi görür, dolayısıyla simülatörü görebilmek için gerek vardır
-#// kübitlerin kuantum yapısı bozulur, klasik 0-1'e dönüşür
-#* 1.parametre kaçıncı kübiti ölçeceği 
-#* 2.parametre kübitin bilgisayardaki karşılığı nereye yazılacağı
-#* QuantumCircuit(2,2) şuna karşılık q0,q1 ve c0,c1 oluşur ,c'ler q'lerin karşılığıdır bilgisayarın hangi kübiti tutacağıdır
+#? Ölçüm
+qc.measure(0, 0)
+#* Ölçüm işlemi süperpozisyonu çökertir; kuantum durumu klasik 0 veya 1 bilgisine dönüşür.
+#* 1. parametre: Ölçülecek kübit indeksi (q0)
+#* 2. parametre: Sonucun aktarılacağı klasik bit indeksi (c0)
+#* QuantumCircuit(2,2) oluşturulduğunda q0, q1 kübitleri ve c0, c1 klasik bitleri tanımlanır.
 
-#* Simülatör için
-simulator = AerSimulator() #* simülatörü oluştur
-job = simulator.run(qc, shots=1) #* simulatörü çalıştır ,1.parametre devre ,2.parametre kaç kez çalıştırılacağı
-counts = job.result().get_counts() #* sonucu topla (kaç kez çalıştığını yazar)
+#? Simülasyon
+simulator = AerSimulator()  #* Aer simülatör nesnesini oluşturur
+job = simulator.run(qc, shots=1)  #* Devreyi çalıştırır (shots: deneyin kaç kez tekrarlanacağı)
+counts = job.result().get_counts()  #* Ölçüm sonuçlarının frekansını (dağılımını) sözlük olarak alır
 print(counts)
 
 print(qc)
-
-#! diğer kapıları görmek için doğrudan yazdırmamız gerekir(PauliKapilar dosyasına bak)
